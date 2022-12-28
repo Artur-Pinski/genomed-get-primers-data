@@ -50,7 +50,7 @@ def genomed_get_primers_data(username: str, pathway: str) -> pd.DataFrame:
             element_id = element.get_attribute("id")
             list_orders.append(element_id)
 
-        for orders in list_orders[:2]:
+        for orders in list_orders:
 
             # Click the element to expand it
             button = driver.find_element(By.ID, orders)
