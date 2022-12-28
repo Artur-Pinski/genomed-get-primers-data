@@ -1,10 +1,9 @@
-import argparse  # for parsing command-line arguments
-import getpass   # for prompting the user for their password
-import pandas as pd  # for creating and manipulating the DataFrame containing the primer data
-import time  # for pausing the script while the website loads information
-
-import selenium  # for interacting with the website using a webdriver
-from selenium.webdriver.common.by import By  # for locating elements on the webpage
+import getpass
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+import time
+import pandas as pd
+import argparse
 
 def genomed_get_primers_data(username: str, pathway: str) -> pd.DataFrame:
     """
@@ -50,7 +49,7 @@ def genomed_get_primers_data(username: str, pathway: str) -> pd.DataFrame:
             element_id = element.get_attribute("id")
             list_orders.append(element_id)
 
-        for orders in list_orders:
+        for orders in list_orders[:2]:
 
             # Click the element to expand it
             button = driver.find_element(By.ID, orders)
@@ -74,8 +73,8 @@ def genomed_get_primers_data(username: str, pathway: str) -> pd.DataFrame:
             time.sleep(1)
     except Exception as e:
         print(f"Error occurred: {e}")
-        
-    driver.quit()
+    finally:    
+        driver.quit()
     
     # Create a list of lists, with each inner list containing 4 elements
     primers_list_of_lists = [data[i:i+4] for i in range(0, len(data), 4)]
