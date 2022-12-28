@@ -74,8 +74,8 @@ def genomed_get_primers_data(username: str, pathway: str) -> pd.DataFrame:
             time.sleep(1)
     except Exception as e:
         print(f"Error occurred: {e}")
-    finally:    
-        driver.quit()
+        
+    driver.quit()
     
     # Create a list of lists, with each inner list containing 4 elements
     primers_list_of_lists = [data[i:i+4] for i in range(0, len(data), 4)]
