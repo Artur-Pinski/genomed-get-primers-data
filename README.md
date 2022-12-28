@@ -15,7 +15,7 @@ This function requires the following dependencies:
 * `pandas`: for creating and manipulating the DataFrame containing the primer data.
 * `time`: for waiting during information loading.
 
-It is also necessary to have the Chrome webdriver installed and the path to the executable specified in the pathway parameter.
+It is also necessary to have the [Chrome webdriver](https://chromedriver.chromium.org/downloads) installed and the path to the executable specified in the pathway parameter.
 
 ## Example
 
