@@ -1,8 +1,10 @@
+import argparse
 import getpass
+import pandas as pd
+import time
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-import time
-import pandas as pd
 
 def genomed_get_primers_data(username: str, pathway: str) -> pd.DataFrame:
     """
@@ -72,8 +74,8 @@ def genomed_get_primers_data(username: str, pathway: str) -> pd.DataFrame:
             time.sleep(1)
     except Exception as e:
         print(f"Error occurred: {e}")
-        
-    driver.quit()
+    finally:    
+        driver.quit()
     
     # Create a list of lists, with each inner list containing 4 elements
     primers_list_of_lists = [data[i:i+4] for i in range(0, len(data), 4)]
@@ -126,4 +128,25 @@ def clean_genomed_primers_data(merged_df: pd.DataFrame) -> pd.DataFrame:
         print(f"Error occurred: {e}")
     
     return merged_df  
-        
+
+def main():
+    # Parse the command-line arguments
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--pathway", help="Absolute pathway for the Chrome driver executable")
+    args = parser.parse_args()
+
+    # Prompt the user for their username
+    username = input("Enter your username: ")
+    # Use the pathway provided as a command-line argument, or the default value if not provided
+    pathway = args.pathway or r"chromedriver.exe"
+
+    # Call the genomed_get_primers_data function and pass it the username, pathway, and password
+    genomed_primers = genomed_get_primers_data(username=username, pathway=pathway)
+    # Calls the clean_genomed_primers_data function and passes it the genomed_primers DataFrame as an argument. 
+    clean_genomed_primers = clean_genomed_primers_data(genomed_primers)
+    # Print the resulting DataFrame
+    
+    return clean_genomed_primers
+
+if __name__ == '__main__':
+    main()
