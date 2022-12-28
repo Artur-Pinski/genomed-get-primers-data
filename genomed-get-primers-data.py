@@ -50,7 +50,7 @@ def genomed_get_primers_data(username: str, pathway: str) -> pd.DataFrame:
             element_id = element.get_attribute("id")
             list_orders.append(element_id)
 
-        for orders in list_orders:
+        for orders in list_orders[:2]:
 
             # Click the element to expand it
             button = driver.find_element(By.ID, orders)
@@ -142,11 +142,10 @@ def main():
 
     # Call the genomed_get_primers_data function and pass it the username, pathway, and password
     genomed_primers = genomed_get_primers_data(username=username, pathway=pathway)
-    # Calls the clean_genomed_primers_data function and passes it the genomed_primers DataFrame as an argument. 
+
     clean_genomed_primers = clean_genomed_primers_data(genomed_primers)
     # Print the resulting DataFrame
     
     return clean_genomed_primers
-
 if __name__ == '__main__':
     main()
