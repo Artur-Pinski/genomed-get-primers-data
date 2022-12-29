@@ -16,8 +16,7 @@ This function requires the following dependencies:
 * `argparse`: for parsing command-line arguments.
 * `pandas`: for creating and manipulating the DataFrame containing the primer data.
 * `selenium`: for interacting with the website using a webdriver.
-
-time is used to for pausing the script while the website loads information, to ensure that all data is properly retrieved
+* `time`: is used to for pausing the script while the website loads information, to ensure that all data is properly retrieved
 
 It is also necessary to have the [Chrome webdriver](https://chromedriver.chromium.org/downloads) installed and the path to the executable specified in the pathway parameter.
 
