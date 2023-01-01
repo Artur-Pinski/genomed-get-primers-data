@@ -2,6 +2,15 @@
 
 This script scrapes data about primers from the [Genomed website](http://www.genomed.pl) and save the data in a Pandas DataFrame and an Excel file. The data includes the ID, name, sequence, and price of each primer, as well as their Tm [°C], length, scale [µmol], purification, and remarks.
 
+
+## How to run
+
+You can simply run the script without any additional arguments. The default pathway is set to the current directory, which assumes that the Chrome driver executable (chromedriver.exe) is located in the same directory as the script. If you want to run the script with a different pathway, you can use the `--pathway` option followed by the desired path: 
+```
+python get_primers_data_from_genomed_test.py --pathway '/path/to/chromedriver'
+```
+
+
 ## Functionality
 
 * `get_primers_data_from_genomed`: This function takes in a username and pathway as arguments and returns a Pandas DataFrame with the data about the primers. The user is prompted to enter their password in a secured way.
@@ -19,7 +28,3 @@ This function requires the following dependencies:
 * `time`: for pausing the script while the website loads information ensuring that all data is properly retrieved
 
 It is also necessary to have the [Chrome webdriver](https://chromedriver.chromium.org/downloads) installed and the path to the executable specified in the pathway parameter.
-
-## How to run
-
-You can simply run the script without any additional arguments. The default pathway is set to the current directory, which assumes that the Chrome driver executable (chromedriver.exe) is located in the same directory as the script. If you want to run the script with a different pathway, you can use the `--pathway` option followed by the desired path: `python get_primers_data_from_genomed_test.py --pathway '/path/to/chromedriver'`
